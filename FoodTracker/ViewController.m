@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 
-@interface ViewController()<UITextFieldDelegate>
+@interface ViewController()<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *mealNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @end
 
 @implementation ViewController
@@ -36,5 +37,12 @@
     _mealNameLabel.text = _textField.text;
 }
 
+- (IBAction)selectImageFromPhotoLibrary:(UITapGestureRecognizer *)sender {
+    [_nameTextField resignFirstResponder];
+    UIImagePickerController *imagePickerController= [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+//    imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary;
+    [imagePickerController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
